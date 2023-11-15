@@ -1,4 +1,5 @@
-import java.io.*;
+
+import java.util.ArrayList;
 
 /**
  * Lead Author(s):
@@ -14,7 +15,7 @@ import java.io.*;
  * 
  * <<add more references here>>
  *  
- * Version/date: 11/14/23
+ * Version/date: 11/15/23
  * 
  * Responsibilities of class: Run the MicroManager Program
  * 
@@ -30,6 +31,41 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//runs the gui
+		
+	}
+	
+	//internal classes
+	/** 
+	 * Responsibilities of class: hold a list of tasks and prioritize them as needed 
+	 */
+	public static class TaskList implements Prioritizable{
+		
+		//fields
+		private ArrayList<Task> tasks;
+
+		//methods
+		@Override
+		public ListItem[] prioritizeList() {
+			//TODO add functionality to prioritize tasks by due date and then priority
+			if(task == null) 
+			return null;
+		}
+		
+	}
+	/** 
+	 * Responsibilities of class: hold a list of reminders and prioritize them as needed 
+	 */
+	public static class ReminderList implements Prioritizable{
+		
+		//fields
+		private ArrayList<Reminder> reminders;
+
+		//methods
+		@Override
+		public ListItem[] prioritizeList() {
+			//TODO add functionality to prioritize reminders by due date and then priority
+			return null;
+		}
 		
 	}
 

@@ -1,6 +1,6 @@
 
 import java.time.*;
-import javax.swing.*;
+
 
 /**
  * Lead Author(s):
@@ -29,10 +29,10 @@ import javax.swing.*;
 */
 public class Task extends ListItem {
 	
-	/**Fields*/
+	//Fields
 	public static enum Status {NotStarted, InProgress, Completed}
 	protected LocalDate dueDate;
-	protected int estimatedTimeToComplete = 0;
+	protected int timeToComplete = 0;
 	protected Status status;
 	protected LocalDateTime completedDate;
 	
@@ -44,7 +44,7 @@ public class Task extends ListItem {
 	public Task(String name, String details, int estimatedTime, LocalDate dueDate) {
 		this.name = name;
 		if(!details.equals(null)) this.details = details;
-		if(estimatedTime > 0) this.estimatedTimeToComplete = estimatedTime;
+		if(estimatedTime > 0) this.timeToComplete = estimatedTime;
 		if(dueDate != null) this.dueDate = dueDate;
 	}
 	
@@ -57,10 +57,50 @@ public class Task extends ListItem {
 		return dueDate;
 	}
 	/**
+	 * Purpose: returns the estimated time to complete
+	 * @return int: timeToComplete
+	 */
+	public int getTimeToComplete() {
+		return timeToComplete;
+	}
+	/**
+	 * Purpose: returns the status
+	 * @return Status: status
+	 */
+	public Status getStatus() {
+		return status;
+	}
+	/**
+	 * Purpose: returns the completion date and time
+	 * @return LocalDateTime: completedDate
+	 */
+	public LocalDateTime getCompletedDate() {
+		return completedDate;
+	}
+	/**
 	 * Purpose: changes value in taskName
-	 * @return nothing
+	 * @param LocalDate: dueDate  
 	 */
 	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
+	}/**
+	 * Purpose: changes value in taskName
+	 * @param int: timeToComplete  
+	 */
+	public void setTimeToComplete(int timeToComplete) {
+		this.timeToComplete = timeToComplete;
+	}
+	/**
+	 * Purpose: changes value in status
+	 * @param Status: status  
+	 */
+	public void setStatus(Status status) {
+		this.status = status;
+	}/**
+	 * Purpose: changes value in completedDate
+	 * @param LocalDateTime: completedDate  
+	 */
+	public void setCompletedDate(LocalDateTime completedDate) {
+		this.completedDate = completedDate;
 	}
 }
