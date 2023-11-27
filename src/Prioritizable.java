@@ -1,3 +1,4 @@
+import java.util.*;
 
 /**
  * Lead Author(s):
@@ -25,6 +26,6 @@
 public interface Prioritizable {
 	
 	//methods
-	ListItem[] prioritizeList();
+	ArrayList<Object> prioritizeList(ArrayList<Object> list);
 
 }

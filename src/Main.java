@@ -1,5 +1,5 @@
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Lead Author(s):
@@ -45,10 +45,33 @@ public class Main {
 
 		//methods
 		@Override
-		public ListItem[] prioritizeList() {
+		public ArrayList<Object> prioritizeList(ArrayList<Object> list) {
 			//TODO add functionality to prioritize tasks by due date and then priority
-			if(task == null) 
-			return null;
+			ArrayList<Object> tempList = (ArrayList<Object>)list.clone();
+			ArrayList<Task> sortedList;
+			Task task = (Task)tempList.get(0);
+			
+			/* recursively calls the method if there are any more members of the list to compare, 
+			 * returns a list with the last member when it reaches the end*/
+			if(tempList.size() > 1) {
+				tempList.remove(0);
+				sortedList = prioritizeList(tempList); 
+			}else{
+				sortedList = new ArrayList<Task>();
+				sortedList.add(task);
+				return sortedList;
+			}
+			
+			int indexInList = 0;
+			while(true) {
+				Task comparingTask = sortedList.get(indexInList);
+				if(task.getDueDate().isBefore(comparingTask.getDueDate())) {
+					sortedList.add(indexInList, task);
+					return sortedList;
+				}else{
+					indexInList++;
+				}
+			}
 		}
 		
 	}
@@ -62,11 +85,35 @@ public class Main {
 
 		//methods
 		@Override
-		public ListItem[] prioritizeList() {
-			//TODO add functionality to prioritize reminders by due date and then priority
-			return null;
+		public ArrayList<Object> prioritizeList(ArrayList<Object> list) {
+			//TODO add functionality to prioritize tasks by due date and then priority
+			ArrayList<Object> tempList = (ArrayList<Object>)list.clone();
+			ArrayList<Object> sortedList;
+			Reminder reminder = (Reminder)tempList.get(0);
+			
+			/* recursively calls the method if there are any more members of the list to compare, 
+			 * returns a list with the last member when it reaches the end*/
+			if(tempList.size() > 1) {
+				tempList.remove(0);
+				sortedList = prioritizeList(tempList); 
+			}else{
+				sortedList = new ArrayList<Object>();
+				sortedList.add(reminder);
+				return sortedList;
+			}
+			
+			/*adds current member into its position in the sorted list*/
+			int indexInList = 0;
+			while(true) {
+				Reminder comparingReminder = (Reminder)sortedList.get(indexInList);
+				if(reminder.getPriority().ordinal() < comparingReminder.getPriority().ordinal()) {
+					sortedList.add(indexInList, reminder);
+					return sortedList;
+				}else{
+					indexInList++;
+				}
+			}
 		}
-		
 	}
 
 }
